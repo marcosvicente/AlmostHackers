@@ -1,24 +1,16 @@
-# README
+Você está desenvolvendo uma aplicação para um software de laboratório de hospital onde os médicos podem fazer criar/atualizar exames e pacientes podem ver. Ninguém pode deletar.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Modelos:
+- User: nome, e-mail, phone_number, avatar (imagem), senha
+Hospital: nome
+- UserHospital: user_id, hospital_id, role
+- Exame: doctor_id, patient_id, description
 
-Things you may want to cover:
+Regras:
+- A ideia é que um hospital tenha vários usuários (através da Join Table UserHospital) que podem ser pacientes ou médicos.
 
-* Ruby version
+- Um exame é apenas uma descrição atrelada a um médico e um paciente.
+- Médicos podem ver todos os exames, pacientes só podem ver os seus exames.
+- Telefones devem ser normalizados em E.164
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A ideia é que você desenvolva um CRUD básico com autenticação (recomendo Devise) e testes levando em conta essas restrições de permissão dependendo do role usuário.
