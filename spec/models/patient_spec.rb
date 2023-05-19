@@ -1,5 +1,16 @@
+# == Schema Information
+#
+# Table name: patients
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Patient, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:patient) { build(:patient) }
+  it { is_expected.to have_many(:exame) }
+  it { is_expected.to validate_presence_of(:name) }
 end

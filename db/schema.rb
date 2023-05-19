@@ -30,18 +30,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_151227) do
     t.index ["patient_id"], name: "index_exames_on_patient_id"
   end
 
-  create_table "hospital_users", id: false, force: :cascade do |t|
-    t.bigint "hospital_id", null: false
-    t.bigint "user_id", null: false
-    t.string "role"
-    t.index ["hospital_id"], name: "index_hospital_users_on_hospital_id"
-    t.index ["user_id"], name: "index_hospital_users_on_user_id"
-  end
-
   create_table "hospitals", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "hospitals_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "hospital_id", null: false
+    t.string "role"
+    t.index ["hospital_id"], name: "index_hospitals_users_on_hospital_id"
+    t.index ["user_id"], name: "index_hospitals_users_on_user_id"
   end
 
   create_table "patients", force: :cascade do |t|
