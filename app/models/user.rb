@@ -11,6 +11,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  user_type              :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -26,4 +27,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_and_belongs_to_many :hospitals
+
+  TYPES_USER = %w[admin doctor patient].freeze
+  validates :user_type, presence: true, inclusion: { in: TYPES_USER }
 end

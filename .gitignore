@@ -36,3 +36,4 @@
 
 # simplecov
 public/uploads/*coverage
+coverage/*
