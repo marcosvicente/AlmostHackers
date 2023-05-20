@@ -28,6 +28,22 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :hospitals
 
+  has_one :patient
+  has_one :doctor
+
   TYPES_USER = %w[admin doctor patient].freeze
   validates :user_type, presence: true, inclusion: { in: TYPES_USER }
+
+
+  def admin?
+    user_type == 'admin'
+  end
+
+  def doctor?
+    user_type == 'doctor'
+  end
+
+  def patient?
+    user_type == 'patient'
+  end
 end

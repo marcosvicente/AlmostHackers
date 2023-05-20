@@ -21,8 +21,8 @@
 #
 FactoryBot.define do
   factory :exame do
-    patient { nil }
-    doctor { nil }
+    patient { create(:patient) }
+    doctor { create(:doctor) }
     description { Faker::Lorem.word }
   end
 end
