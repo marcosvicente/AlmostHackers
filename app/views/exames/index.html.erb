@@ -1,0 +1,37 @@
+
+
+
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Description</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @exames.each do |exame| %>
+        <tr>
+          <td><%= exame.patient.user.name %></td>
+          <td><%= exame.description %></td>
+          <td>
+            <% if can? :update, exame %>
+              <%= link_to(edit_exame_path(exame.id)) do %>
+                Edit
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if can? :create, Exame %>
+      <%= link_to(new_exame_path, class:"d-grid gap-2 d-md-block btn btn-primary w-2" ) do %>
+        New
+      <% end %>
+    <% end %>
+  </div>
+</div>

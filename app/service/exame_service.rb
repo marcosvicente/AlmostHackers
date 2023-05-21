@@ -14,10 +14,10 @@ class ExameService
   end
 
   def get_exame_from_doctor
-    Exame.where(patient: @user.patient)
+    Exame.includes(:patient, :doctor).where(patient: @user.patient)
   end
 
   def get_exame_from_patient
-    Exame.where(doctor: @user.doctor)
+    Exame.where(doctor: @user.doctor).joins(:patient, :doctor)  
   end 
 end
