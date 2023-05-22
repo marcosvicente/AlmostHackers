@@ -20,11 +20,12 @@
         </button>
         <div class="collapse navbar-collapse d-flex flex-row-reverse" id="navbarSupportedContent">
           
-         <div class="" >
-            <%= button_to(destroy_user_session_path, :method => :delete, class: "btn btn-primary" ) do %>
-              Logout
-            <% end %>
-          </div>
+         <% if user_signed_in? %> 
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary"%> 
+            <div class="me-3 "> User: <%= current_user.email %> </div> 
+          <% else %>
+            <%= button_to "Sign in", new_user_session_path,class: "btn  btn-primary" %> 
+          <% end %>
         </div>
       </div>
     </nav>

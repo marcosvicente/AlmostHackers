@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  load_and_authorize_resource
+  load_and_authorize_resource if: lambda { |controller| [:problems, :analyses].include? controller.controller_name.to_sym }
   before_action :authenticate_user!
 
   rescue_from CanCan::AccessDenied do |_e|
