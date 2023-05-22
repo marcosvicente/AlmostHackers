@@ -31,10 +31,16 @@ FactoryBot.define do
 
     trait :doctor do
       user_type { :doctor }
+      after(:create) do |user|
+        create(:doctor, user: user)
+      end
     end
 
     trait :patient do
       user_type { :patient }
+      after(:create) do |user|
+        create(:patient, user: user)
+      end
     end
   end
 end

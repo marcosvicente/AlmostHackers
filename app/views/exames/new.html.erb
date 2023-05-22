@@ -1,3 +1,25 @@
 <h1 class="text-center">Create Exame</h1>
 
-<%= render 'form', exame: @exame %>
+<div class="d-flex justify-content-center mt-4">
+  <div class="row align-items-center border border-1 rounded p-2">
+  <% if  @patient_select_array == nil%>
+    <h2>You must have create a patient to create a exame</h2>
+  <% else %>
+   <%= form_for(@exame) do |form| %>
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %><br />
+        <%= form.text_area :description,  class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.select :patient_id, @patient_select_array,  {class: "form-select"}, {:include_blank => 'None Specified'}%>
+      </div>
+      <div class="mb-3">
+        <%= form.button :submit, class:"btn btn-primary w-50", tabindex:"4" do %>
+          Save
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>

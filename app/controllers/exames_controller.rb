@@ -22,7 +22,6 @@ class ExamesController < ApplicationController
 
   # POST /exames
   def create
-    debugger
     @exame = Exame.new(exame_params)
     @exame.doctor = current_user.doctor
     if @exame.save
@@ -34,8 +33,8 @@ class ExamesController < ApplicationController
 
    # POST /exames
    def update
-    if @exame.update(exame_params)
-     redirect_to root_path, notice: "Exame was successfully updated."
+    if @exame.update(exame_update_params)
+     redirect_to root_path, notice: "Exame was updated successfully ."
     else
      render :edit, status: :unprocessable_entity 
     end
@@ -53,6 +52,12 @@ class ExamesController < ApplicationController
     )
   end
   
+  def exame_update_params
+    params.require(:exame).permit(
+      :description
+    )
+  end
+
   def patient_select_array
     @patient_select_array = Patient.includes(:user).collect{|patient| [patient.user.name, patient.id]}
   end
